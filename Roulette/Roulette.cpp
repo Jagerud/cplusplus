@@ -21,7 +21,7 @@ int main()
 		cout << "Choose a color, type 50 for red or 51 for green, or a number between 1 and 36 \n";
 		cin >> colorNumber;		
 		if (colorNumber > 40) {
-			rouletteValue = rand() % 2 + 50; //color
+			rouletteValue = rand() % 2 + 50; //color, since it is 50% chance of getting the right color there is no need to go further than 2 numbers
 			if (rouletteValue == colorNumber) {	//player wins
 				roundMoneyValue = roundMoneyValue * 2;
 				cout << "You won \n" << roundMoneyValue;
