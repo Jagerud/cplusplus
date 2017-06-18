@@ -18,37 +18,58 @@ int main()
 		}
 		money = money - roundMoneyValue;	//updates wallet
 		cout << "You now have " << money << " left \n";
-		cout << "Choose a color, type 50 for red or 51 for green, or a number between 1 and 36 \n";
-		cin >> colorNumber;		
-		if (colorNumber > 40) {
-			rouletteValue = rand() % 2 + 50; //color, since it is 50% chance of getting the right color there is no need to go further than 2 numbers
-			if (rouletteValue == colorNumber) {	//player wins
-				roundMoneyValue = roundMoneyValue * 2;
-				cout << "You won \n" << roundMoneyValue;
-			}
-			else {		//lose
-				roundMoneyValue = 0;	//turn money is lost
-				cout << "You lost \n";
-			}
-		}
-		else {
+		cout << "Choose a color, type 50 for black or 51 for red, or a number between 1 and 36 \n";
+		cin >> colorNumber;
+		
 			rouletteValue = rand() % 36 + 1;	//spins wheel 1-36
-			if (rouletteValue == colorNumber) {	//player wins
-				roundMoneyValue = roundMoneyValue * 10;
-				cout << "You won \n" << roundMoneyValue;
+			if (colorNumber > 40) {
+				if (rouletteValue % 2) {		//odd, red
+					cout << "Red " << rouletteValue << "\n";
+					if (colorNumber == 51) { //win
+						roundMoneyValue = roundMoneyValue * 2;
+						cout << "You won " << roundMoneyValue;
+					}
+					else {		//lose
+						roundMoneyValue = 0;	//turn money is lost
+						cout << "You lost \n";
+					}
+				}
+				else {		//even, black
+					cout << "Black " << rouletteValue << "\n";
+					if (colorNumber == 50) { //win
+						roundMoneyValue = roundMoneyValue * 2;
+						cout << "You won " << roundMoneyValue;
+					}
+					else {		//lose
+						roundMoneyValue = 0;	//turn money is lost
+						cout << "You lost \n";
+					}
+				}
 			}
-			else {		//lose
-				roundMoneyValue = 0;
-				cout << "You lost \n";
+			else {
+				if (rouletteValue % 2) {		//odd, red
+					cout << "Red " << rouletteValue << "\n";
+				}
+				else {
+					cout << "Black " << rouletteValue << "\n";
+				}
+				if (rouletteValue == colorNumber) {	//player wins
+					roundMoneyValue = roundMoneyValue * 10;
+					cout << "You won " << roundMoneyValue;
+				}
+				else {		//lose
+					roundMoneyValue = 0;
+					cout << "You lost \n";
+				}
 			}
-		}
+		
 		money = money + roundMoneyValue;	//turn money is added to total money, might be 0
 		if (money == 0) {
 			cout << "Out of money! \n";
 		}
 		else
 		{
-			cout << "You now have \n" << money;
+			cout << "You now have " << money << "\n";
 			cout << "To continue type any number or 0 to end \n";
 			cin >> gameEnder;		//input if the user wants to end the game
 		}
